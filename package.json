@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node bin/www.prd",
     "dev": "./node_modules/.bin/nodemon bin/www.dev",
-    "prd": "pm2 start bin/www.prd --name='shulive-blog'",
+    "prd": "gulp && pm2 start bin/www.prd --name='shulive-blog'",
+    "build": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
