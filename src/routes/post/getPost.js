@@ -5,7 +5,7 @@ const utils = require('./../../lib/utils');
 module.exports = async (ctx) => {
   const postData = await dbClient('post').select()
     .where({
-      user_id: ctx.session.user.id,
+      id: ctx.params.pid,
     });
   const post = postData[0];
   post.content = marked(post.content);
