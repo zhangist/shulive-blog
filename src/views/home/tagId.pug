@@ -1,0 +1,30 @@
+extends ./main
+
+block sub_script
+
+block sub_content
+  div.content-right
+    div.module
+      div.module-title 操作
+      ul.padding-15
+        li
+          a(href='javascript:void(0);') 无
+  div.content-left
+    div.module
+      div.module-title
+        a(href='/home/tag') 标签列表
+        span  > #{tagText}
+      ul.post-list
+        -if(!data.length)
+          li(style='line-height:100px;color:#999;text-align:center;') 该标签暂无文章
+        -for(var i=0;i<data.length;i++)
+          -var time = new Date(data[i].create_time);
+          -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+          li.post-item
+            div.post-title
+              a(href='/article/'+data[i].id) #{data[i].title}
+            div.post-content #{data[i].content.replace(/<\/?[^>]*>/g,"")}
+            div.post-img
+            div
+              span.post-time #{timeStr}
+              span.post-view-count 浏览 #{data[i].count}

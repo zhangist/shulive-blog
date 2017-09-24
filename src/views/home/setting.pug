@@ -1,0 +1,32 @@
+extends ./main
+
+block sub_script
+  script
+
+block sub_content
+    div.pull-left(style='width:200px;')
+      div.module
+        div.module-title 设置列表
+        ul.padding-15
+          li.margin-b-10(style='color:#999;font-size:16px;font-weight:400;') 基本设置
+          li
+            -if(urlPath=='/home/setting/info')
+              span 账号信息
+            -else
+              a(href='/home/setting/info') 账号信息
+          li
+            -if(urlPath == '/home/setting/avatar')
+              span 头像
+            -else
+              a(href='/home/setting/avatar') 头像
+          li.margin-b-10.margin-t-10(style='color:#999;font-size:16px;font-weight:400;') 安全设置
+          li
+            -if(urlPath == '/home/setting/password')
+              span 密码
+            -else
+              a(href='/home/setting/password') 密码
+    div(style='margin-left:210px;')
+      div.module
+        div.module-title 设置内容
+        div.padding-15
+          block setting_content

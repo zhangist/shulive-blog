@@ -1,0 +1,25 @@
+extends ../layout/index
+
+block script
+  script
+
+block content
+  .siteLogin
+    include ./../includes/header
+    .content
+      .module
+        .module-title(style='text-align:center;') 登录
+        .login-form-wrap.padding-15.clearfix
+          form.login-form(method='post')
+            .row
+              input(type='text', name='email', value=email, placeholder='邮箱')
+            .row
+              input(type='password', name='password', placeholder='密码')
+            .row
+              input(type='submit', value='登录')
+            -var color = { error: 'red', info: '#333', success: 'green' };
+            -if (msg && msg.text)
+              .row
+                span(style='"color:'+color[msg.type]+';"') #{msg.text}
+          .login-ad
+    include ./../includes/footer

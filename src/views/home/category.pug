@@ -1,0 +1,41 @@
+extends ./main
+
+block sub_script
+  script(src='/static/js/home-category.js')
+
+block sub_content
+  div.content-right
+    div.module
+      div.module-title 操作
+      ul.padding-15
+        li
+          a#newCategoryBtn(href='javascript:void(0);') 新增分类
+  div.content-left
+    div.module
+      div.module-title 分类列表
+      ul.post-list
+        -for(var i=0;i<categoryList.length;i++)
+          -var time = new Date(categoryList[i].create_time);
+          -var month = (time.getMonth()+1)>9 ? (time.getMonth()+1) : '0'+(time.getMonth()+1);
+          -var timeStr = time.getFullYear()+'/'+month+'/'+time.getDate();
+          li.post-item
+            a(href='/home/category/'+categoryList[i].name) #{categoryList[i].name}
+            span &nbsp;(#{categoryList[i].count})&nbsp;
+            span.pull-right(style='color:#999;')
+              span &nbsp;创建时间&nbsp;
+              span #{timeStr}
+        -if (categoryList.length === 0)
+          li(style='line-height:100px;color:#999;text-align:center;') 暂无标签
+  div#newCategoryModal.modal-wrap(style="display:none;")
+    div.closeBtn.pull-right close
+    div.modal-inner(style="max-width:350px;")
+      div.module
+        div.module-title 新增分类
+        div.padding-15
+          div.input-wrap(style="width:100%;")
+            input.input(type="text", name="category", placeholder="请填写分类名")
+          div
+            span.modalMsg
+        div.modal-btns.padding-15
+          button#submitCategory.button.button-blue.margin-r-10 确定
+          button.modalCloseBtn.button.button-blue 取消

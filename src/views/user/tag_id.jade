@@ -1,0 +1,21 @@
+extends ./main
+
+block user_content
+  div.clearfix(style='min-height:500px;')
+    div.content-right
+      div.module
+        div.module-title 操作
+        ul.padding-15
+          li
+            a(href='javascript:void(0);') 无
+    div.content-left
+      div.module
+        div.module-title
+          a(href='/home/tag') 标签列表
+          span  > #{tag.name}
+          ul.post-list.padding-15
+            -if(!data.length)
+              li(style='line-height:100px;color:#999;text-align:center;') 该标签暂无文章
+            -for(var i=0;i<data.length;i++)
+              li.post-item
+                a(href='/article/'+data[i].id) #{data[i].title}

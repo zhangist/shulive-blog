@@ -1,0 +1,19 @@
+extends ../layout/index
+
+block style
+  link(rel='stylesheet', href='/static/css/index/index.css')
+
+block script
+  script
+
+block content
+  ul
+    -for (var i=0;i<data.length;++i){
+      -var time = new Date(data[i].create_time);
+      -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+      li.post_item
+        .post_title
+          a(href='/post/'+data[i].id) #{data[i].title}
+        .post_time #{timeStr} #{data[i].user_id}
+        .post_content!= data[i].name
+    -}

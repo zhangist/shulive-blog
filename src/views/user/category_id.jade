@@ -1,0 +1,23 @@
+extends ./main
+
+block user_content
+  div.clearfix
+    div.content-right
+      div.module
+        div.module-title TA的赞助商
+        div.user-ad-side
+    div.content-left
+      div.module
+        div.module-title
+          a(href=userPath+'/category') 分类列表
+          -if(category)
+            span  > #{category.name}
+          -else
+            span  > 地址有误，
+            a(href='/home/category') 返回分类列表
+        ul.post-list
+          -if(!data.length)
+            li(style='line-height:100px;color:#999;text-align:center;') 该分类暂无文章
+          -for(var i=0;i<data.length;i++)
+            li
+              a(href='/article/'+data[i].id) #{data[i].title}

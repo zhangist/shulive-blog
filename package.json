@@ -1,0 +1,58 @@
+{
+  "name": "shulive-blog",
+  "version": "1.0.0",
+  "description": "Shulive blog site.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/www.prd",
+    "dev": "./node_modules/.bin/nodemon bin/www.dev",
+    "prd": "pm2 start bin/www.prd",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangist/shulive-blog.git"
+  },
+  "author": "zhangist",
+  "bugs": {
+    "url": "https://github.com/zhangist/shulive-blog/issues"
+  },
+  "homepage": "https://github.com/zhangist/shulive-blog#readme",
+  "dependencies": {
+    "debug": "^2.6.3",
+    "knex": "^0.13.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-conditional-get": "^2.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-etag": "^3.0.0",
+    "koa-i18n": "^2.1.0",
+    "koa-json": "^2.0.2",
+    "koa-locale": "^1.3.0",
+    "koa-logger": "^2.0.1",
+    "koa-mount": "^3.0.0",
+    "koa-onerror": "^1.2.1",
+    "koa-redis": "^3.0.0",
+    "koa-router": "^7.1.1",
+    "koa-session": "^5.5.0",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "marked": "^0.3.6",
+    "mysql2": "^1.4.2",
+    "pug": "^2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-pug": "^3.3.0",
+    "gulp-rev": "^8.0.0",
+    "gulp-rev-collector": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "nodemon": "^1.8.1"
+  }
+}

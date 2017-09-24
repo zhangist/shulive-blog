@@ -1,0 +1,28 @@
+extends ../layout/index
+
+block content
+  div#userIndex
+    include ./../includes/header
+    div.content
+      div.module
+        div.user-banner
+        div.user-menu-wrap.clearfix
+          ul.user-menu
+            li
+              -if(pathname.replace('/u', '').split('/').length == 2)
+                span 文章
+              -else
+                a(href=userPath) 文章
+            li
+              -if(pathname.replace('/u', '').split('/')[2] == 'category')
+                span 分类
+              -else
+                a(href=userPath+'/category') 分类
+            li
+              -if(pathname.replace('/u', '').split('/')[2] == 'tag')
+                span 标签
+              -else
+                a(href=userPath+'/tag') 标签
+      div.clearfix.margin-t-10
+        block user_content
+    include ./../includes/footer

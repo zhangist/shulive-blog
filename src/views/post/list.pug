@@ -1,0 +1,36 @@
+extends ./main
+
+block sub_script
+  script(src='/static/js/article/list/main.js')
+
+block sub_content
+    .a-side
+      a.a-logo(href='/')
+        img(src="/img/logo.png")
+      .a-user
+        .a-avatar
+          img(src="")
+        .a-username #{user.username}
+        .a-about
+    .a-content
+      -for(var i=0;i<data.length;i++)
+        .a-detail
+          .a-head
+            h5.a-title
+              a(href='/article/'+data[i].id) #{data[i].title}
+            .a-info
+              span.a-time #{data[i].create_time}
+              a.a-author(href='/'+data[i].username) #{data[i].username}
+              span.a-viewcount 浏览 #{data[i].count}
+          hr
+          .a-body!= data[i].content
+          a.a-morelink(href='/article/'+data[i].id) 查看详情>>
+      -if(data.length==0)
+        .a-detail(style="text-align:center;") 暂时没有文章
+      -if(page['count']>1)
+        .paging(style="text-align:center;")
+          -for(var i=0;i<page['count'];i++)
+            -if(i==page['num']-1)
+              span #{i+1}
+            -else
+              a(href='?p='+(i+1)) #{i+1}

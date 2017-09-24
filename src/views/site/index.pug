@@ -1,0 +1,38 @@
+extends ./../layout/index
+
+block script
+  script(src='/static/js/index-index.js')
+
+block content
+  .siteIndex
+    include ./../includes/header
+    .content
+      .module
+        .banner
+      .content-right
+        .module
+          .module-title Advertisement
+          .index-ad-side
+        .module
+          .module-title 热门文章
+          ul.hot-article-list#hotArticleList
+            li 加载中...
+      .content-left
+        .module
+          .module-title
+            span 最新文章
+            button.button.button-plain.select-button.pull-right(style='margin:4px;') 默认排序
+          ul.post-list
+            -for (var i=0;i<postList.length;i++){
+              -var time = new Date(postList[i].create_time);
+              -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+              li.post-item
+                .post-title
+                  a(href='/post/'+postList[i].post_id) #{postList[i].title}
+                .post-content!= postList[i].content
+                div
+                  span.post-time #{timeStr}
+                  span.post-user!= postList[i].name
+                  span.post-view-count 浏览 #{postList[i].views}
+            -}
+        include ./../includes/footer

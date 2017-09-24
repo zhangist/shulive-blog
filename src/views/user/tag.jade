@@ -1,0 +1,22 @@
+extends ./main
+
+block user_content
+  div.clearfix
+    div.content-right
+      div.module
+        div.module-title TA的赞助商
+        div.user-ad-side
+    div.content-left
+      div.module
+        div.module-title 标签列表
+        ul.post-list
+          -if(!data.length)
+            li(style='line-height:100px;color:#999;text-align:center;') 暂无标签
+          -for(var i=0;i<data.length;i++)
+            -var time = new Date(data[i].create_time);
+            -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+            li(style='line-height:30px;')
+              a(href=userPath+'/tag/'+data[i].id) #{data[i].name}
+              span &nbsp;(#{data[i].count})&nbsp;
+              span &nbsp;创建时间&nbsp;
+              span #{timeStr}

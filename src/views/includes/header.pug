@@ -1,0 +1,26 @@
+div.header
+  div.header-wrap
+    a.header-logo(href='/')
+      img(src="/static/img/logo.png")
+    ul.header-menu.pull-left
+      li
+        a(href='/')
+          i.icon-home &nbsp;
+          span 首页
+    ul.header-menu.pull-right
+      -if(user)
+        li.dropdownWrap
+          a.dropdownBtn(href='javascript:void(0);')
+            i.icon-user &nbsp;
+            span #{user.full_name}
+          div.dropdownList.bg-white(style='display:none;position:absolute;right:0px;')
+            ul.dropdownMenu
+              li
+                a(href='/home') 个人中心
+              li
+                a(href='/logout') 退出
+      -else
+        li
+          a.button.button-blue(href='/login') 登录
+        li
+          a.button.button-primary.button-blue(href='http://www.shulive.com/join') 注册

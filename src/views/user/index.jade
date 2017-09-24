@@ -1,0 +1,38 @@
+extends ./main
+
+block user_content
+  div.clearfix
+    div.content-right
+      div.module
+        div.module-title TA的赞助商
+        div.user-ad-side
+      div.module
+        div.module-title TA的热门文章
+        ul.hot-article-list
+          li
+            a(href="#") 测试标题11111是顺丰到付第三个第四个是法国发
+            span 67浏览
+          li
+            a(href="#") 测试标题2222是顺丰到付第三个第四个
+            span 56浏览
+    div.content-left
+      div.module
+        div.module-title 文章列表
+        ul.post-list
+          -for(var i=0;i<data.length;i++)
+            -var time = new Date(data[i].create_time);
+            -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+            li.post-item
+              div.post-title
+                a(href='/article/'+data[i].id) #{data[i].title}
+              div.post-content #{data[i].content.replace(/<\/?[^>]*>/g,"")}
+              div.post-img
+              div
+                span.post-time #{timeStr}
+                span.post-view-count 浏览 #{data[i].count}
+      div.paging
+        -for(var i=0;i<page['count'];i++)
+          -if(i==page['num']-1)
+            span #{i+1}
+          -else
+            a(href='/home/index?p='+(i+1)) #{i+1}

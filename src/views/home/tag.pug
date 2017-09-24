@@ -1,0 +1,22 @@
+extends ./main
+
+block sub_script
+
+block sub_content
+    div.content-right
+      div.module
+        div.module-title 操作
+        ul.padding-15
+          li
+            a(href='javascript:void(0);') 无
+    div.content-left
+      div.module
+        div.module-title 标签列表
+        ul.post-list
+          -if(!(tagList && tagList.length))
+            li(style='line-height:100px;color:#999;text-align:center;') 暂无标签
+          -else
+            -for(var i=0;i<tagList.length;i++)
+              li.post-item
+                a(href='/home/tag/'+tagList[i].name) #{tagList[i].name}
+                span &nbsp;(#{tagList[i].count})&nbsp;

@@ -1,0 +1,31 @@
+extends ./main
+
+block user_content
+  div.clearfix
+    div.content-right
+      div.module
+        div.module-title TA的赞助商
+        div.user-ad-side
+    div.content-left
+      div.module
+        div.module-title 分类列表
+        div.margin-l-15
+          ul.post-list
+            -for(var i=0;i<data.length;i++)
+              -var time = new Date(data[i].create_time);
+              -var timeStr = time.getFullYear()+'/'+(time.getMonth()+1)+'/'+time.getDate();
+              li(style='margin:15px 0;')
+                a(href=userPath+'/category/'+data[i].name) #{data[i].name}
+                span &nbsp;(#{data[i].count})
+  div#newCategoryModal.modal-wrap(style="display:none;")
+    div.closeBtn.pull-right close
+    div.modal-inner
+      h3.modal-title 新增分类
+      div.modal-body
+        div
+          input(type="text", name="category", placeholder="分类")
+        div
+          span.modalMsg
+      div.modal-btns
+        button#submitCategory 确定
+        button.modalCloseBtn 取消

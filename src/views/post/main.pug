@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title #{title} - Shulive Blog
+    meta(name="viewport" content="width=device-width,height=device-height, user-scalable=no,initial-scale=1, minimum-scale=1, maximum-scale=1")
+    link(rel="shortcut icon" href="/favicon.ico")
+    link(rel='stylesheet', href='http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/static/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/static/css/base.css')
+    link(rel='stylesheet', href='/static/css/main.css')
+    link(rel='stylesheet', href='/static/css/post-main.css')
+    block sub_style
+  body
+    include ./../includes/header
+    block sub_content
+    include ./../includes/footer
+  script(src='/static/vendors/jquery/jquery-3.1.1.min.js')
+  script(src='/static/js/main.js')
+  block sub_script

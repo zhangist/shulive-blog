@@ -1,0 +1,15 @@
+extends ./main
+
+block sub_script
+  script
+
+block sub_content
+  div.a-body
+    div.a-detail
+      div.a-header
+        h5.a-title #{post.title}
+        div.a-info
+          span.a-time #{post.create_time}
+          a.a-author(href='/'+(post.url_name?post.url_name:'u/'+post.user_id)) #{post.full_name}
+          span.a-viewcount 浏览 #{post.views}
+      div.a-content!= post.content

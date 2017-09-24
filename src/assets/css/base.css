@@ -1,0 +1,41 @@
+/*clearfix*/
+.clearfix:after {content: " ";display: block;clear: both;height: 0;}
+.clearfix {zoom: 1;}
+
+/*border*/
+.border-radius-3{border-radius:3px;}
+.border-ddd{border: 1px solid #ddd;}
+.border-l-ddd{border-left: 1px solid #ddd;}
+.border-r-ddd{border-right: 1px solid #ddd;}
+.border-light{border: 1px solid #ddd;}
+
+/*background*/
+.bg-white{background: #fff;}
+.bg-eee{background: #eee;}
+
+/*space*/
+.padding-10{padding: 10px;}
+.padding-15{padding: 15px;}
+.padding-t-10{padding-top: 10px;}
+.padding-l-10{padding-left: 10px;}
+.padding-r-10{padding-right: 10px;}
+.padding-b-10{padding-bottom: 10px;}
+.margin-10{margin: 10px;}
+.margin-t-10{margin-top: 10px;}
+.margin-l-10{margin-left: 10px;}
+.margin-r-10{margin-right: 10px;}
+.margin-b-10{margin-bottom: 10px;}
+.margin-t-15{margin-top: 15px;}
+.margin-l-15{margin-left: 15px;}
+
+/*float*/
+.pull-left{float: left;}
+.pull-right{float: right;}
+
+/*font text*/
+.text-bold{font-weight: bold;}
+/*text color*/
+.text-999{color: #999;}
+/*text size*/
+.text-small{font-size: 12px;}
+.text-14{font-size: 14px;}

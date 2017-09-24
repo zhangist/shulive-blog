@@ -1,0 +1,27 @@
+extends ./main
+
+block sub_script
+  script(src='/static/js/home-category_id.js')
+
+block sub_content
+  div.content-right
+    div.module
+      div.module-title 操作
+      ul.padding-15
+        li
+          a(href='javascript:void(0);') 无
+  div.content-left
+    div.module
+      div.module-title
+        a(href='/home/category') 分类列表
+        -if(categoryText)
+          span  > #{categoryText}
+        -else
+          span  > 地址有误，
+          a(href='/home/category') 返回分类列表
+      ul.post-list
+        -if(!data.length)
+          li(style='line-height:100px;color:#999;text-align:center;') 该分类暂无文章
+        -for(var i=0;i<data.length;i++)
+          li.post-item
+            a(href='/article/'+data[i].id) #{data[i].title}

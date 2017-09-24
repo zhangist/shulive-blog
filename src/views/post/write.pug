@@ -1,0 +1,93 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1,minimum-scale=1, maximum-scale=1")
+    title #{title} - Shulive Blog
+    link(rel="shortcut icon" href="/favicon.ico")
+    link(rel='stylesheet', href='http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/static/css/base.css')
+    link(rel='stylesheet', href='/static/css/main.css')
+    link(rel='stylesheet', href='/static/css/post-write.css')
+  body(style='overflow:hidden;')
+    .header
+      ul.header-menu.pull-left
+        li
+          a.text-14(href='javascript:history.back();') < 返回
+      ul.header-menu.pull-right
+        li.previewBtnWrap
+          a#previewBtn(href='javascript:void(0)') V 预览
+        li.dropdownWrap
+          a.dropdownBtn(href='javascript:void(0)') E 元素
+          div.dropdownList.bg-white(style='display:none;position:absolute;right:0px;')
+            ul.dropdownMenu
+              li
+                a.insertMarkdown(href='javascript:void(0);') B 粗体
+              li
+                a.insertMarkdown(href='javascript:void(0);') L 列表
+              li
+                a.insertMarkdown(href='javascript:void(0);') A 链接
+              li
+                a.insertMarkdown(href='javascript:void(0);') P 图片
+        li.dropdownWrap
+          a.dropdownBtn(href='javascript:void(0)') O 操作
+          .dropdownList.bg-white(style='display:none;position:absolute;right:0px;')
+            ul.dropdownMenu
+              li(style=post?'display:none;':'')
+                a#saveBtn(href='javascript:void(0)') S 保存到草稿箱
+              li
+                a#publishBtn(href='javascript:void(0)') #{post?'S 保存修改':'P 直接发布'}
+    .headerHolder
+    #writeBoxWrap
+      .write-box-code
+        textarea#articleContent #{post?post.content:''}
+      .write-box-line
+      .write-box-preview
+        .preview-content
+    #publishModal.modal-wrap(style="display:none;")
+      .modal-inner(style="max-width:350px;")
+        .module
+          .module-title 设置文章标题/分类/标签
+          .padding-15
+            input(type="hidden", name="id", value=post?post.id:0)
+            div(style='color:#999;') 标题:
+            div(style='height:50px;')
+              .input-wrap(style='width:100%;')
+                input.input(type="text", name="title", placeholder="标题", value=post?post.title:'')
+            div(style='color:#999;') 标签:
+            ul.tag-list#tagSet
+              -var tagArr = post?(post.tag+'').split('||'):[]
+              -for(var i=0;i<tagArr.length;i++)
+                li.tag-item
+                  span.tag-text #{tagArr[i]}
+                  a.tag-delete-btn X
+            div(style='height:50px;')
+              .input-add.input-wrap.tag-add-wrap
+                input.input(type="text", name="tag", placeholder="标签")
+                a.input-add-btn(href='javascript:void(0);') +
+                a.input-finish-btn(href='javascript:void(0);') √
+            div(style='color:#999;') 分类:
+            ul.category-list#categorySet
+              -if(post && post.category_id == 0)
+                li.category-item.selected(data-id=0) 默认分类
+              -else
+                li.category-item(data-id=0) 默认分类
+              -for(var i=0;i<categoryList.length;i++)
+                -if(post.category_id==categoryList[i].id)
+                  li.category-item.selected(data-id=categoryList[i].id) #{categoryList[i].name}
+                -else
+                  li.category-item(data-id=categoryList[i].id) #{categoryList[i].name}
+            div(style='height:50px;')
+              .input-add.input-wrap.category-add-wrap
+                input.input(type="text", name="category", placeholder="分类")
+                a.input-add-btn(href='javascript:void(0);') +
+                a.input-finish-btn(href='javascript:void(0);') √
+            div
+              span.modalMsg
+          div.padding-15
+            button#submitPublish.button.button-blue.margin-r-10 确定#{data?'保存':''}
+            button.modalCloseBtn.button.button-blue 取消
+  script(src='/static/vendors/jquery/jquery-3.1.1.min.js')
+  script(src='/static/vendors/marked/marked.min.js')
+  script(src='/static/js/main.js')
+  script(src='/static/js/post-write.js')

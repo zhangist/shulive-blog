@@ -1,0 +1,5 @@
+/node_modules
+/dist
+/rev
+/config/db.dev.js
+/config/db.prd.js

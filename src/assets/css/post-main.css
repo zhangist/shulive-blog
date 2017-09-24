@@ -1,0 +1,54 @@
+body {
+  background: #f8f8f8;
+}
+img {
+  max-width: 100%;
+}
+.paging {
+  margin: 10px auto;
+}
+.paging>span,
+.paging>a {
+  margin: 5px;
+}
+.a-body {
+  width: 600px;
+  margin: 60px auto 30px auto;
+}
+.a-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.a-detail {
+  padding: 15px;
+  background: #fff;
+}
+.a-title {
+  font-size: 24px;
+  font-weight: 400;
+}
+.a-author,
+.a-time,
+.a-viewcount {
+  margin-right: 10px;
+  color: #999;
+  font-size: 14px;
+}
+.a-viewcount {
+  float: right;
+}
+.a-morelink {
+  font-size: 12px;
+}
+.a-content {
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 620px) {
+  .a-body {
+    width: 100%;
+  }
+  .a-detail {
+    margin: 0 10px;
+  }
+}
