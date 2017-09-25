@@ -1,12 +1,12 @@
 const marked = require('marked');
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
   const page = {
     num: ctx.query.p || 1,
     size: ctx.query.s || 10,
   };
-  const postData = await dbClient('post').select()
+  const postData = await knex('post').select()
     .where({
       user_id: ctx.session.user.id,
       is_deleted: 0,
@@ -22,7 +22,7 @@ module.exports = async (ctx) => {
   });
   // 查询分页数据
   if (postList.length === page.size) {
-    const postCount = await dbClient('post').count()
+    const postCount = await knex('post').count()
       .where({
         user_id: ctx.session.user.id,
       });

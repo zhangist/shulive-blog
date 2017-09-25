@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const utils = require('./../../lib/utils');
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
   const { email, password } = ctx.request.body;
@@ -14,12 +14,12 @@ module.exports = async (ctx) => {
       },
     });
   } else {
-    let userData = await dbClient('user_local').select()
+    let userData = await knex('user_local').select()
       .leftJoin('shulive.user', 'user_local.user_id', 'user.id')
       .where({ email });
 
     if (!userData[0]) {
-      userData = await dbClient('shulive.user').select().where({ email });
+      userData = await knex('shulive.user').select().where({ email });
       if (!userData[0]) {
         await ctx.render('site/login', {
           title: ctx.state.__('login'),
@@ -31,7 +31,7 @@ module.exports = async (ctx) => {
         });
       } else {
         const user = userData[0];
-        const userInsert = await dbClient('user_local').insert({
+        const userInsert = await knex('user_local').insert({
           user_id: user.id,
           last_login_time: utils.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss'),
           last_login_ip: ctx.ip,
@@ -51,8 +51,14 @@ module.exports = async (ctx) => {
           });
         } else {
           ctx.session.user = Object.assign({}, user, userInsert[0]);
-          if (ctx.session.redirectUrl) {
-            ctx.redirect(ctx.session.redirectUrl);
+          ctx.state.user = Object.assign({}, user, userInsert[0]);
+
+          const redirectUrl = ctx.query.redirectUrl
+            || ctx.query.returnUrl
+            || ctx.query.redirect
+            || ctx.return;
+          if (redirectUrl) {
+            ctx.redirect(redirectUrl);
           } else {
             ctx.redirect('/home');
           }
@@ -75,11 +81,16 @@ module.exports = async (ctx) => {
           last_login_time: utils.dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss'),
           last_login_ip: ctx.ip,
         };
-        await dbClient('user_local').update(changes);
+        await knex('user_local').update(changes);
         ctx.session.user = Object.assign({}, userDataAll, changes);
-        if (ctx.session.redirectUrl) {
-          ctx.redirect(ctx.session.redirectUrl);
-          ctx.session.redirectUrl = '';
+        ctx.state.user = Object.assign({}, userDataAll, changes);
+
+        const redirectUrl = ctx.query.redirectUrl
+          || ctx.query.returnUrl
+          || ctx.query.redirect
+          || ctx.return;
+        if (redirectUrl) {
+          ctx.redirect(redirectUrl);
         } else {
           ctx.redirect('/home');
         }

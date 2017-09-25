@@ -1,9 +1,9 @@
 const marked = require('marked');
 const utils = require('./../../lib/utils');
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
-  const postData = await dbClient.select('*', 'post.id as post_id')
+  const postData = await knex.select('*', 'post.id as post_id')
     .from('post')
     .leftJoin('shulive.user', 'user.id', 'post.user_id')
     .where({

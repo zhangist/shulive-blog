@@ -1,9 +1,9 @@
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
   let postData;
   if (ctx.params.categoryText) {
-    postData = await dbClient('post').select()
+    postData = await knex('post').select()
       .leftJoin('category', 'category.id', 'post.category_id')
       .where({
         'category.name': ctx.params.categoryText,
@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
       postList: postData,
     });
   } else if (ctx.params.tagText) {
-    postData = await dbClient('post').select()
+    postData = await knex('post').select()
       .where('tag', 'like', ctx.params.tagText);
     await ctx.render('home/tagId', {
       title: ctx.state.__('category-post-list'),

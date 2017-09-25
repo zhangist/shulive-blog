@@ -1,11 +1,11 @@
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
-  const categoryData = dbClient('category').select()
+  const categoryData = knex('category').select()
     .where({
       user_id: ctx.session.user.id,
     });
-  const postData = dbClient('post').select()
+  const postData = knex('post').select()
     .where({
       id: ctx.params.pid,
     });

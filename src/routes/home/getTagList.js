@@ -1,7 +1,7 @@
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
-  const tagData = await dbClient('tag').select()
+  const tagData = await knex('tag').select()
     .where({
       user_id: ctx.session.user.id,
     });

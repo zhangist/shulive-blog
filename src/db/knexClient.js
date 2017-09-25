@@ -1,6 +1,6 @@
 const isDev = process.env.NODE_ENV ? !(process.env.NODE_ENV === 'production') : true;
 
-const client = require('knex')({
+const knexClient = require('knex')({
   client: 'mysql2',
   debug: isDev,
   connection: {
@@ -14,4 +14,4 @@ const client = require('knex')({
   pool: { min: 0, max: 7 },
 });
 
-module.exports = client;
+module.exports = knexClient;

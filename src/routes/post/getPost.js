@@ -1,9 +1,9 @@
 const marked = require('marked');
-const dbClient = require('./../../db/client');
+const knex = require('./../../db/knexClient');
 const utils = require('./../../lib/utils');
 
 module.exports = async (ctx) => {
-  const postData = await dbClient('post').select()
+  const postData = await knex('post').select()
     .where({
       id: ctx.params.pid,
     });
