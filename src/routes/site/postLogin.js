@@ -56,7 +56,7 @@ module.exports = async (ctx) => {
           const redirectUrl = ctx.query.redirectUrl
             || ctx.query.returnUrl
             || ctx.query.redirect
-            || ctx.return;
+            || ctx.query.return;
           if (redirectUrl) {
             ctx.redirect(redirectUrl);
           } else {
@@ -88,7 +88,7 @@ module.exports = async (ctx) => {
         const redirectUrl = ctx.query.redirectUrl
           || ctx.query.returnUrl
           || ctx.query.redirect
-          || ctx.return;
+          || ctx.query.return;
         if (redirectUrl) {
           ctx.redirect(redirectUrl);
         } else {
