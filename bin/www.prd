@@ -1,17 +1,5 @@
 // set node env
 process.env.NODE_ENV = 'production';
 
-const fs = require('fs');
-const path = require('path');
-
-const dbConfig = fs.existsSync(path.join(__dirname, './../config/db.prd.js'))
-  ? require('./../config/db.prd')
-  : require('./../config/db.dev-or-prd');
-
-process.env.DB_HOST = dbConfig.mysql.host;
-process.env.DB_PORT = dbConfig.mysql.port;
-process.env.DB_USER = dbConfig.mysql.user;
-process.env.DB_PWD = dbConfig.mysql.password;
-process.env.DB_NAME = dbConfig.mysql.database;
-
+require('./../config/db.prd');
 require('./www');
