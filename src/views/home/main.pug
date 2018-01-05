@@ -15,39 +15,39 @@ block content
             li
               -if(urlPath == '/home')
                 span
-                  i.icon-file &nbsp;
+                  i.icon-file-text2 &nbsp;
                   span 文章
               -else
                 a(href='/home')
-                  i.icon-file &nbsp;
+                  i.icon-file-text2 &nbsp;
                   span 文章
             li
               -if(urlPath.indexOf('/home/category')==0)
                 span
-                  i.icon-th-list &nbsp;
+                  i.icon-list &nbsp;
                   span 分类
               -else
                 a(href='/home/category')
-                  i.icon-th-list &nbsp;
+                  i.icon-list &nbsp;
                   span 分类
             li
               -if(urlPath.indexOf('/home/tag')==0)
                 span
-                  i.icon-tags &nbsp;
+                  i.icon-price-tags &nbsp;
                   span 标签
               -else
                 a(href='/home/tag')
-                  i.icon-tags &nbsp;
+                  i.icon-price-tags &nbsp;
                   span 标签
           ul.user-menu.pull-right
             li
               -if(urlPath.indexOf('/home/setting')==0)
                 span
-                  i.icon-cogs &nbsp;
+                  i.icon-cog &nbsp;
                   span 设置
               -else
                 a(href='/home/setting')
-                  i.icon-cogs &nbsp;
+                  i.icon-cog &nbsp;
                   span 设置
             li
               -if(urlPath=='/post/write')

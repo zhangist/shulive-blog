@@ -1,5 +1,5 @@
 // set node env
 process.env.NODE_ENV = 'development';
 
-require('./../config/db.dev');
+require('./../config/app.dev');
 require('./www');

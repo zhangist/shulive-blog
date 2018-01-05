@@ -1,6 +1,6 @@
 const marked = require('marked');
 const utils = require('./../../lib/utils');
-const dbClient = require('./../../db/client');
+const dbClient = require('./../../db/knexClient');
 
 module.exports = async (ctx) => {
   let where;

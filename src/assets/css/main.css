@@ -26,6 +26,9 @@ a:hover {
   color: #003880;
   text-decoration: none;
 }
+i[class^="icon-"] {
+  font-size: 16px;
+}
 
 .header {
   width: 100%;
@@ -62,6 +65,9 @@ a.header-logo img {
 }
 .header-menu>li>a {
   margin-left: 10px;
+}
+.header-menu>li>a .icon {
+  font-size: 16px;
 }
 .user-menu-wrap {
   padding: 0 15px;
