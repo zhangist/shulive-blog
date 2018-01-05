@@ -1,5 +1,5 @@
 // set node env
 process.env.NODE_ENV = 'production';
 
-require('./../config/db.prd');
+require('./../config/app.prd');
 require('./www');
